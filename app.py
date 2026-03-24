@@ -21,13 +21,13 @@ def executar_query(query, *args, fetch=False, commit=False):
 
     return resultado
 
-# 🔍 GET todos
+# GET todos
 @app.route('/jogos', methods=['GET'])
 def listar_jogos():
     jogos = executar_query("SELECT * FROM jogos", fetch=True)
     return jsonify([dict(j) for j in jogos]), 200
 
-# 🔍 GET por ID
+# GET por ID
 @app.route('/jogos/<int:id>', methods=['GET'])
 def buscar_jogo(id):
     jogo = executar_query("SELECT * FROM jogos WHERE id = ?", id, fetch=True)
@@ -37,7 +37,7 @@ def buscar_jogo(id):
 
     return jsonify(dict(jogo[0])), 200
 
-# ➕ POST
+# POST
 @app.route('/jogos', methods=['POST'])
 def criar_jogo():
     dados = request.get_json()
@@ -53,7 +53,7 @@ def criar_jogo():
 
     return jsonify({"mensagem": "Jogo criado com sucesso!"}), 201
 
-# ✏️ PUT
+# PUT
 @app.route('/jogos/<int:id>', methods=['PUT'])
 def atualizar_jogo(id):
     dados = request.get_json()
@@ -75,7 +75,7 @@ def atualizar_jogo(id):
 
     return '', 204
 
-# ❌ DELETE
+# DELETE
 @app.route('/jogos/<int:id>', methods=['DELETE'])
 def deletar_jogo(id):
     existe = executar_query("SELECT id FROM jogos WHERE id = ?", id, fetch=True)
@@ -87,7 +87,7 @@ def deletar_jogo(id):
 
     return jsonify({"mensagem": "Jogo removido com sucesso!"}), 200
 
-# 🏠 rota inicial (evita erro 404)
+# rota inicial para testar se a API está funcionando
 @app.route('/')
 def home():
     return "API de Inventário de Jogos funcionando!"
