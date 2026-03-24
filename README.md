@@ -36,8 +36,8 @@ CRUD/
 │
 ├── app.py          # API Flask com rotas
 ├── init_db.py      # Script de criação do banco
-├── README.md       # Documentação
-├── .gitignore      # Arquivos ignorados
+├── database.db     # Banco de dados (gerado automaticamente)
+     
 ```
 
 ---
